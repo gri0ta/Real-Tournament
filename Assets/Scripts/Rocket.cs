@@ -18,5 +18,11 @@ public class Rocket : MonoBehaviour
 	{
 		Destroy(gameObject);
 		print("boom!");
+
+		var health = other.gameObject.GetComponent<Health>();
+		if (health != null)
+		{
+			health.Damage(10);
+		}
 	}
 }

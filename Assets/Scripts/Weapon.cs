@@ -17,6 +17,7 @@ public class Weapon : MonoBehaviour
 
 	void Shoot()
 	{
-		Instantiate(bulletPrefab,transform.position,transform.rotation);
+		var cam = Camera.main.transform;
+		Instantiate(bulletPrefab,cam.position,cam.rotation);
 	}
 }
