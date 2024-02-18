@@ -595,9 +595,11 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3732050572547027184, guid: df62d9183aeff46ae883a674699ee7f0,
     type: 3}
   ammo: 10
-  maxAmmo: 10
+  maxAmmo: 100
   isReloading: 0
   isAutoFire: 1
+  fireInterval: 0.05
+  fireCooldown: 0
 --- !u!1 &1778592898
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Rocket : MonoBehaviour
 {
 	public float speed = 20;
+	public GameObject explosionPrefab;
 
 	void Start()
 	{
@@ -24,5 +25,6 @@ public class Rocket : MonoBehaviour
         {
 			health.Damage(10);
         }
+		Instantiate(explosionPrefab, transform.position, transform.rotation);
 	}
 }
