@@ -47,12 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4987e2857a644339769e78d719f9e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 15
   explosionPrefab: {fileID: 8467087797515880738, guid: b0166f44ef200e340a93e2ab28e0880c,
     type: 3}
   hitPrefab: {fileID: 494026076349168851, guid: af7d778a8de371948adfa67b8a8e2db3,
     type: 3}
-  bounces: 2
+  bounces: 0
 --- !u!54 &-6001557739738012188
 Rigidbody:
   m_ObjectHideFlags: 0
