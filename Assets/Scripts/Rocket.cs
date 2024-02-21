@@ -6,6 +6,8 @@ public class Rocket : MonoBehaviour
 {
 	public float speed = 20;
 	public GameObject explosionPrefab;
+	public GameObject hitPrefab;
+	public int bounces;
 
 	void Start()
 	{
@@ -19,12 +21,24 @@ public class Rocket : MonoBehaviour
 
 	void OnCollisionEnter(Collision other)
 	{
-		Destroy(gameObject);
+		if (bounces == 0)
+		{
+			Destroy(gameObject);
+			Instantiate(explosionPrefab, transform.position, transform.rotation);
+		}
+        else
+        {
+			transform.forward = other.contacts[0].normal; //padarom kad musu kulka ziuretu i ta puse kaip ir object su kuriuo susiliecia
+		}
+		var obj = Instantiate(hitPrefab, transform.position, transform.rotation);
+		obj.transform.position = other.contacts[0].point + transform.forward * 0.2f ;
+		bounces--;
+
 		var health = other.gameObject.GetComponent<Health>();
         if (health!=null)
         {
 			health.Damage(10);
         }
-		Instantiate(explosionPrefab, transform.position, transform.rotation);
+		
 	}
 }
