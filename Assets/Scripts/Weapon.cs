@@ -5,6 +5,8 @@ using UnityEngine.Events;
 public class Weapon : MonoBehaviour
 {
 	public UnityEvent onrightClick;
+	public UnityEvent onShoot;
+	public UnityEvent<bool> onReload;
 
 	public GameObject bulletPrefab;
 	public int ammo;
@@ -50,8 +52,9 @@ public class Weapon : MonoBehaviour
 		}
 		if (fireCooldown > 0) return;
 		ammo--;
-		
 		fireCooldown = fireInterval;
+		onShoot.Invoke();
+
 		for (int i = 0; i < bulletsPerShot; i++)
 		{ 
 		var bulletShot = Instantiate(bulletPrefab, transform.position, transform.rotation);
@@ -64,11 +67,12 @@ public class Weapon : MonoBehaviour
     {
 		if (isReloading) return;
 		isReloading = true;
+		onReload.Invoke(false);
 
 		await new WaitForSeconds(2f);
 
 		ammo = maxAmmo;
 		isReloading = false;
-		
-    }
+		onReload.Invoke(true);
+	}
 }

@@ -10,7 +10,15 @@ public class PlayerUI : MonoBehaviour
     public Health health;
     public Weapon weapon;
 
-    private void Update()
+    void Start()
+    {
+        UpdateUI();
+        health.onDamage.AddListener(UpdateUI);
+        weapon.onShoot.AddListener(UpdateUI);
+        weapon.onReload.AddListener((ended)=>UpdateUI()); //anonimine funkcija
+    }
+
+    void UpdateUI()
     {
         magazineText.text = weapon.ammo.ToString();
         healthText.text = health.health.ToString();
