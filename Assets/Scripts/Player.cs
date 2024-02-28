@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     {
         var cam = Camera.main.transform;
         var collided = Physics.Raycast(cam.position, cam.forward,out var hit, 2f, weaponLayer);
-        equipText.SetActive(collided && !weapon);
+        equipText.SetActive(collided && weapon !=null);
 
         if (Input.GetKeyDown(KeyCode.E))
         {
