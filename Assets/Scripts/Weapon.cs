@@ -8,7 +8,9 @@ public class Weapon : MonoBehaviour
 	public UnityEvent onShoot;
 	public UnityEvent<bool> onReload;
 
+
 	public GameObject bulletPrefab;
+	public AudioClip shootSound;
 	public int ammo;
 	public int maxAmmo = 10;
 	public bool isReloading;
@@ -27,6 +29,9 @@ public class Weapon : MonoBehaviour
 
 	public void Shoot()
 	{
+		var source = GetComponent<AudioSource>();
+		source.clip = shootSound;
+		source.Play();
 		if (isReloading) return;
 		if (ammo <= 0)
 		{
