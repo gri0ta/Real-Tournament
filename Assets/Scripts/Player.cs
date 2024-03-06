@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public AudioClip dropGun;
     Health health;
     public Weapon weapon;
     public LayerMask weaponLayer;
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        
         health = GetComponent<Health>();
 
     }
@@ -31,6 +33,9 @@ public class Player : MonoBehaviour
             }
             else
             {
+                var source = GetComponent<AudioSource>();
+                source.clip = dropGun;
+                source.Play();
                 Drop();
             }
 

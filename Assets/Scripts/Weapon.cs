@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
 
 	public GameObject bulletPrefab;
 	public AudioClip shootSound;
+	public AudioClip reloadSound;
 	public int ammo;
 	public int maxAmmo = 10;
 	public bool isReloading;
@@ -30,9 +31,9 @@ public class Weapon : MonoBehaviour
 	public void Shoot()
 	{
 		var source = GetComponent<AudioSource>();
+		if (isReloading) return;
 		source.clip = shootSound;
 		source.Play();
-		if (isReloading) return;
 		if (ammo <= 0)
 		{
 			Reload();
@@ -57,6 +58,9 @@ public class Weapon : MonoBehaviour
 		isReloading = true;
 		onReload.Invoke(false);
 
+		var source = GetComponent<AudioSource>();
+		source.clip = reloadSound; ;
+		source.Play();
 		await new WaitForSeconds(2f);
 
 		ammo = maxAmmo;
